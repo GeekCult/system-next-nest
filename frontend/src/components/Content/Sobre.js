@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function VideoList({ setLoggedIn }) {
+export default function Sobre() {
 
     const { id } = useParams();
     const navigate = useNavigate()
@@ -19,19 +19,20 @@ export default function VideoList({ setLoggedIn }) {
         async function fetchData() {
             try {
                 const token = localStorage.getItem('token');
-                const {data} = await axios.get(`http://127.0.0.1:3002/api/v1/video?id=${videoId}`, {
+               
+                const {data} = await axios.get(`http://127.0.0.1:3002/company?id=${videoId}`, {
                     headers: ({
                         Authorization: 'Bearer ' + token
                     })
                 });
                 setVideoInfo(data)
             } catch {
-                setLoggedIn(false);
-                navigate('/')
+                //setLoggedIn(false);
+                //navigate('/')
             }
         }
         fetchData();
-    }, [videoId, navigate, setLoggedIn]);
+    }, [videoId, navigate]);
     return (
 <Container>
     <Grid item xs={12} md={12} marginTop={2}>

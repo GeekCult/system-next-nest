@@ -3,6 +3,7 @@ import SignUp from "./Auth/SignUp";
 import Header from "./Navbar/Header";
 import VideoList from "./Video/VideoList";
 import Video from "./Video/Video";
+import Sobre from "./Content/Sobre";
 import {
     BrowserRouter,
     Routes,
@@ -32,6 +33,10 @@ export default function Index(props) {
                         </Route>
                     </Routes>
                 }
+                <Routes>
+                    <Route path="/sobre" element={<Sobre />}>
+                    </Route>
+                </Routes>
             </BrowserRouter>
         </div>
 

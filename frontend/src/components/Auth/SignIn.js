@@ -33,7 +33,7 @@ export default function SignIn(props) {
           if (response.data.statusCode === parseInt('401')) {
             setErrorMessage(response.data.message)
           } else {
-            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('token', response.data.access_token);
             setIsLoggedIn(true)
             navigate('/video')
           }
