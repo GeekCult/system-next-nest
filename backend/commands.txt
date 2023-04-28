@@ -1,0 +1,20 @@
+
+
+//Submit a imagem to Google Cloud Build
+gcloud builds submit --tag southamerica-west1-docker.pkg.dev/sanguine-fx-370116/cloud-run-source-deploy/drconsulta
+
+
+//Atualiza o arquivo de settings que deve ser usado
+gcloud run services replace service.yaml  
+
+
+
+docker build -t name-image .
+docker run name-image
+docker push us-docker.pkg.dev/cloudrun/container/geekcult/drconsulta  
+
+gcloud run deploy 
+
+
+
+Exon@3011
