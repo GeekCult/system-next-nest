@@ -1,9 +1,9 @@
 import SignIn from "./Auth/SignIn";
 import SignUp from "./Auth/SignUp";
 import Header from "./Navbar/Header";
-import VideoList from "./Video/VideoList";
-import Video from "./Video/Video";
+import Profile from "./Conta/Profile";
 import Sobre from "./Content/Sobre";
+import ForgotPassword from "./Auth/ForgotPassword";
 import {
     BrowserRouter,
     Routes,
@@ -20,22 +20,19 @@ export default function Index(props) {
             <BrowserRouter>
                 {isLoggedIn ?
                     <Routes>
-                        <Route path="/video" element={<VideoList setLoggedIn={setLoggedIn}/>}>
-                        </Route>
-                        <Route path="/video/:id" element={<Video setLoggedIn={setLoggedIn}/>}>
-                        </Route>
+                        <Route path="/" element={<Profile setIsLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />}></Route>
+                        <Route path="/conta" element={<Profile setLoggedIn={setLoggedIn}/>}></Route>
                     </Routes>
                     :
                     <Routes>
-                        <Route path="/" element={<SignIn setIsLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />}>
-                        </Route>
-                        <Route path="/signup" element={<SignUp setIsLoggedIn={setLoggedIn} />}>
-                        </Route>
+                        <Route path="/" element={<SignIn setIsLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />}></Route>
+                        <Route path="/conta" element={<SignIn setIsLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />}></Route>
+                        <Route path="/signup" element={<SignUp setIsLoggedIn={setLoggedIn} />}></Route>
                     </Routes>
                 }
                 <Routes>
-                    <Route path="/sobre" element={<Sobre />}>
-                    </Route>
+                    <Route path="/sobre" element={<Sobre />}></Route>
+                    <Route path="/forgot-password" element={<ForgotPassword />}></Route>
                 </Routes>
             </BrowserRouter>
         </div>

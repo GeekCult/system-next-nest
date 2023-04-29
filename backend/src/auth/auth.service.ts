@@ -26,11 +26,26 @@ export class AuthService {
         }else{
             //return user.password + " " + user.password + ' ' + auth.password
             if(user.password === auth.password) {
-                return await this.gerarToken(user);
+                let { access_token } = await this.gerarToken(user);
+                return {access_token: access_token, id: user.id}
             }else{
                 return {'statusCode': 401, 'message': 'Usuário ou Senha Inválidos'}
                 throw new UnauthorizedException('Usuário ou Senha Inválidos');
             }
+        }
+    }
+
+    async checkUser(auth: UserAuth): Promise<any> {
+        const user = await this.findOneByEmail(auth.email);
+        //return user;
+        //const user = {id: 0, email: "", password: ""};
+        if (user === null) {
+            return {'statusCode': 401, 'message': 'Usuário não encontrado'}
+            throw new UnauthorizedException('Usuário não encontrado');
+
+        }else{            
+            return {'statusCode': 200, 'message': 'E-mail com senha enviado com sucesso'}
+            
         }
     }
 
@@ -44,7 +59,7 @@ export class AuthService {
     }
 
     async findOneBy(email: string): Promise<UserEmailAuth> {
-        return {name: "Pera", email: 'carai'}
+        return {name: "Geek Cult", email: 'contato@geekcult.com.br'}
         return this.authRepository.find({select: {id: true, email: true}, where: {email: email}});
     }
 

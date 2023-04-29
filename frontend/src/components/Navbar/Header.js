@@ -84,10 +84,11 @@ export default function SearchAppBar({isLoggedIn}) {
                     <Typography
                         variant="h6"
                         noWrap
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                        component="a"
+                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', color: '#fff',  textDecorationLine: 'none'} }}
+                        href="/"
                     >
-                        Streamly
+                        Login System
                     </Typography>
                     {isLoggedIn &&
                         <>

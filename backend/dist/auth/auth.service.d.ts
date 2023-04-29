@@ -7,6 +7,7 @@ export declare class AuthService {
     private jwtService;
     constructor(authRepository: AuthRepository, jwtService: JwtService);
     validateUser(auth: UserAuth): Promise<any>;
+    checkUser(auth: UserAuth): Promise<any>;
     findAll(): Promise<UserAuth[]>;
     findOne(email?: number): Promise<UserEmailAuth>;
     findOneBy(email: string): Promise<UserEmailAuth>;

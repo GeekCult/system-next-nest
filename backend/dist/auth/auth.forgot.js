@@ -9,28 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserService = void 0;
-const common_1 = require("@nestjs/common");
-const user_repository_1 = require("./user.repository");
-let UserService = class UserService {
-    constructor(userRepository, personRepository) {
-        this.userRepository = userRepository;
-        this.personRepository = personRepository;
-    }
-    async findAll() {
-        return this.userRepository.findAll();
-    }
-    async findOne(id = 1) {
-        return this.userRepository.findById(id);
-    }
-    async createRecord(user) {
-        return this.userRepository.save(user);
-    }
+exports.ForgotAuth = void 0;
+const typeorm_1 = require("typeorm");
+const swagger_1 = require("@nestjs/swagger");
+let ForgotAuth = class ForgotAuth {
 };
-UserService = __decorate([
-    (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [user_repository_1.UserRepository,
-        user_repository_1.UserRepository])
-], UserService);
-exports.UserService = UserService;
-//# sourceMappingURL=user.service.js.map
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], ForgotAuth.prototype, "id", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, typeorm_1.Column)({ length: 250 }),
+    __metadata("design:type", String)
+], ForgotAuth.prototype, "email", void 0);
+ForgotAuth = __decorate([
+    (0, typeorm_1.Entity)('user')
+], ForgotAuth);
+exports.ForgotAuth = ForgotAuth;
+//# sourceMappingURL=auth.forgot.js.map

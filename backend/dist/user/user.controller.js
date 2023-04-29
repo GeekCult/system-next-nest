@@ -16,6 +16,7 @@ exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
+const parse_int_pipe_1 = require("@nestjs/common/pipes/parse-int.pipe");
 const user_entity_1 = require("./user.entity");
 const user_service_1 = require("./user.service");
 let UserController = class UserController {
@@ -24,6 +25,9 @@ let UserController = class UserController {
     }
     findAll() {
         return this.usersService.findAll();
+    }
+    findOne(id) {
+        return this.usersService.findOne(id);
     }
     createRecord(user) {
         return this.usersService.createRecord(user);
@@ -39,6 +43,17 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, swagger_1.ApiBearerAuth)('JWT-auth'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get an user information' }),
+    (0, swagger_1.ApiResponse)({ status: 403, description: 'Forbidden.' }),
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id', parse_int_pipe_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Post)(),
     (0, swagger_1.ApiOperation)({ summary: 'Create a new user' }),

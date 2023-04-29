@@ -21,6 +21,9 @@ let UserRepository = class UserRepository extends typeorm_1.Repository {
     async findAll() {
         return this.find({ select: { id: true, firstName: true, lastName: true, email: true, password: false } });
     }
+    async findById(id) {
+        return this.findOne({ select: { id: true, firstName: true, lastName: true, email: true, password: false }, where: { id: id } });
+    }
 };
 UserRepository = __decorate([
     (0, common_1.Injectable)(),

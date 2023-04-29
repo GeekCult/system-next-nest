@@ -16,6 +16,7 @@ exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
 const auth_service_1 = require("./auth.service");
+const auth_forgot_1 = require("./auth.forgot");
 const auth_entity_1 = require("./auth.entity");
 let AuthController = class AuthController {
     constructor(authService) {
@@ -23,6 +24,9 @@ let AuthController = class AuthController {
     }
     async login(user) {
         return this.authService.validateUser(user);
+    }
+    async forgot(user) {
+        return this.authService.checkUser(user);
     }
 };
 __decorate([
@@ -33,6 +37,14 @@ __decorate([
     __metadata("design:paramtypes", [auth_entity_1.UserAuth]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
+__decorate([
+    (0, common_1.Post)('forgot-password'),
+    (0, swagger_1.ApiOperation)({ summary: 'You must type your e-mail to reset your password' }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [auth_forgot_1.ForgotAuth]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "forgot", null);
 AuthController = __decorate([
     (0, common_1.Controller)("auth"),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

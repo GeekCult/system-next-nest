@@ -9,12 +9,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const company_module_1 = require("./company/company.module");
 const auth_module_1 = require("./auth/auth.module");
-const parking_module_1 = require("./parking/parking.module");
-const vehicle_module_1 = require("./vehicles/vehicle.module");
 const user_module_1 = require("./user/user.module");
-const reports_module_1 = require("./reports/reports.module");
 const database_1 = require("./config/database");
 let AppModule = class AppModule {
 };
@@ -22,7 +18,7 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forRoot(database_1.databaseConfig),
-            auth_module_1.AuthModule, company_module_1.CompanyModule, parking_module_1.ParkingModule, vehicle_module_1.VehicleModule, user_module_1.UserModule, reports_module_1.ReportsModule
+            auth_module_1.AuthModule, user_module_1.UserModule
         ],
     })
 ], AppModule);

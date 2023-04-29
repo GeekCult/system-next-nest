@@ -2,12 +2,14 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { UserRepository } from './user.repository';
 import { User } from './user.entity';
+import { Person } from './person.entity';
 
 @Injectable()
 export class UserService {
 
     constructor(
         private userRepository: UserRepository<User>,
+        private personRepository: UserRepository<Person>,
     ){}
 
     async findAll(): Promise<User[]> {
@@ -15,7 +17,7 @@ export class UserService {
     }
 
     async findOne(id: number = 1): Promise<User> {
-        return this.userRepository.findOneBy({ id: id });
+        return this.userRepository.findById(id);
     }
 
     async createRecord(user: User){

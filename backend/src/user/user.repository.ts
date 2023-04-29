@@ -13,9 +13,12 @@ export class UserRepository extends Repository<User> {
     }
     
     async findAll() {
-        //return this;
-        return this.find({select: {id: true, firstName: true, lastName: true, email: true, password: false}});
-      }
+      return this.find({select: {id: true, firstName: true, lastName: true, email: true, password: false}});
+    }
+
+    async findById(id: number){
+      return this.findOne({select: {id: true, firstName: true, lastName: true, email: true, password: false}, where: {id: id}});
+    }
     /* 
   async createCompany(createCompanyDto: CreateCompanyInput): Promise<void> {
     const {

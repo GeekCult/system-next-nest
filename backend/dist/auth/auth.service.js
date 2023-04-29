@@ -26,12 +26,23 @@ let AuthService = class AuthService {
         }
         else {
             if (user.password === auth.password) {
-                return await this.gerarToken(user);
+                let { access_token } = await this.gerarToken(user);
+                return { access_token: access_token, id: user.id };
             }
             else {
                 return { 'statusCode': 401, 'message': 'Usuário ou Senha Inválidos' };
                 throw new common_1.UnauthorizedException('Usuário ou Senha Inválidos');
             }
+        }
+    }
+    async checkUser(auth) {
+        const user = await this.findOneByEmail(auth.email);
+        if (user === null) {
+            return { 'statusCode': 401, 'message': 'Usuário não encontrado' };
+            throw new common_1.UnauthorizedException('Usuário não encontrado');
+        }
+        else {
+            return { 'statusCode': 200, 'message': 'E-mail com senha enviado com sucesso' };
         }
     }
     async findAll() {
@@ -41,7 +52,7 @@ let AuthService = class AuthService {
         return this.authRepository.findOneBy({ email: email });
     }
     async findOneBy(email) {
-        return { name: "Pera", email: 'carai' };
+        return { name: "Geek Cult", email: 'contato@geekcult.com.br' };
         return this.authRepository.find({ select: { id: true, email: true }, where: { email: email } });
     }
     async findOneByEmail(email) {

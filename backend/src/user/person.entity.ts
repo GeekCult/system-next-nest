@@ -18,7 +18,4 @@ export abstract class Person {
     @Column()
     email: string;
 
-    @ApiProperty()
-    @Column()
-    password: string;
 }

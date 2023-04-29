@@ -3,7 +3,6 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ParseIntPipe } from '@nestjs/common/pipes/parse-int.pipe';
 import { User } from './user.entity';
-import { Person } from './person.entity';
 import { UserService } from './user.service';
 
 
@@ -21,19 +20,14 @@ export class UserController {
         return this.usersService.findAll();
     }
     
-    /*
+    @UseGuards(JwtAuthGuard)
+    @ApiBearerAuth('JWT-auth') 
+    @ApiOperation({ summary: 'Get an user information' })
+    @ApiResponse({ status: 403, description: 'Forbidden.' })
     @Get(':id')
     findOne(@Param('id', ParseIntPipe) id : number) {
         return this.usersService.findOne(id);
-    } */
-    
-    /*
-    @Post('search') 
-    //@ApiOperation({ summary: 'Create cat' })
-    //@ApiResponse({ status: 403, description: 'Forbidden.' })
-    createSearch(@Body() person: Person): Promise<Person> {
-        return this.usersService.createRecord(person);
-    } */
+    } 
 
     @Post() 
     @ApiOperation({ summary: 'Create a new user' })

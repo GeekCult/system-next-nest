@@ -33,10 +33,5 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Person.prototype, "email", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)(),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Person.prototype, "password", void 0);
 exports.Person = Person;
 //# sourceMappingURL=person.entity.js.map

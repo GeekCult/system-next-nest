@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ReactReduxContext } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -9,15 +10,19 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import axios from 'axios';
 import { useNavigate } from "react-router-dom"
+
 
 const theme = createTheme();
 
 export default function SignIn(props) {
   const { setIsLoggedIn } = props
   const [errrorMessage, setErrorMessage] = React.useState('')
+  const { store } = React.useContext(ReactReduxContext)
   let navigate = useNavigate();
+  document.title = "Home Page";  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,9 +38,12 @@ export default function SignIn(props) {
           if (response.data.statusCode === parseInt('401')) {
             setErrorMessage(response.data.message)
           } else {
+            store.dispatch({type: 'firstname', payload: response.data.firstName})
+            store.dispatch({type: 'lastname', payload: response.data.lastName})
             localStorage.setItem('token', response.data.access_token);
+            localStorage.setItem('id', response.data.id);
             setIsLoggedIn(true)
-            navigate('/video')
+            navigate('/conta')
           }
       }
     );// your catch block);
@@ -95,7 +103,7 @@ export default function SignIn(props) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="/Signup" variant="body2">
+                <Link href="/Forgot-Password" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
