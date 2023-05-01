@@ -38,8 +38,10 @@ export default function SignIn(props) {
           if (response.data.statusCode === parseInt('401')) {
             setErrorMessage(response.data.message)
           } else {
-            store.dispatch({type: 'firstname', payload: response.data.firstName})
-            store.dispatch({type: 'lastname', payload: response.data.lastName})
+            //store.dispatch({type: 'firstname', payload: response.data.firstName})
+            //store.dispatch({type: 'lastname', payload: response.data.lastName})
+            localStorage.setItem('firstname', response.data.firstName);
+            localStorage.setItem('lastname', response.data.lastName);
             localStorage.setItem('token', response.data.access_token);
             localStorage.setItem('id', response.data.id);
             setIsLoggedIn(true)

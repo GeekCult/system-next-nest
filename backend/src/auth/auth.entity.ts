@@ -1,6 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, TableInheritance } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-//import { User } from '../user/user.entity';
 
 @Entity('user')
 export class UserAuth {
@@ -15,5 +14,13 @@ export class UserAuth {
     @ApiProperty()
     @Column({ length: 250 })
     password?: string;
+
+    //@ApiProperty()
+    @Column({ length: 250 })
+    firstName?: string;
+
+    //@ApiProperty()
+    @Column({ length: 250 })
+    lastName?: string;
     
 }

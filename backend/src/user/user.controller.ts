@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ParseIntPipe } from '@nestjs/common/pipes/parse-int.pipe';
 import { User } from './user.entity';
+import { Person } from './person.entity';
 import { UserService } from './user.service';
 
 
@@ -31,21 +32,24 @@ export class UserController {
 
     @Post() 
     @ApiOperation({ summary: 'Create a new user' })
-    //@ApiResponse({ status: 403, description: 'Forbidden.' })
     createRecord(@Body() user: User): Promise<User> {
         return this.usersService.createRecord(user);
     }
 
-    /* 
-
-    @Patch(':id')
-    async editNote(@Body() note: Note, @Param('id') id: number): Promise<Note> {
-        const noteEdited = await this.notesService.editNote(id, note);
-        return noteEdited;
+    @Put(':id')
+    @ApiBearerAuth('JWT-auth') 
+    @ApiOperation({ summary: 'Update an user information' })
+    @ApiResponse({ status: 403, description: 'Forbidden.' })
+    editRecord(@Body() user: Person, @Param('id') id: number): Promise<Person> {
+        const userEdited = this.usersService.editRecord(id, user);
+        return userEdited;
     }
 
     @Delete(':id')
+    @ApiBearerAuth('JWT-auth') 
+    @ApiOperation({ summary: 'Delete an user' })
+    @ApiResponse({ status: 403, description: 'Forbidden.' })
     remove(@Param('id', ParseIntPipe) id: number) {
-        this.notesService.remove(id);
-    } */
+        this.usersService.removeRecord(id);
+    }
 }

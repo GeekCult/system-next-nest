@@ -18,6 +18,7 @@ const swagger_1 = require("@nestjs/swagger");
 const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
 const parse_int_pipe_1 = require("@nestjs/common/pipes/parse-int.pipe");
 const user_entity_1 = require("./user.entity");
+const person_entity_1 = require("./person.entity");
 const user_service_1 = require("./user.service");
 let UserController = class UserController {
     constructor(usersService) {
@@ -31,6 +32,13 @@ let UserController = class UserController {
     }
     createRecord(user) {
         return this.usersService.createRecord(user);
+    }
+    editRecord(user, id) {
+        const userEdited = this.usersService.editRecord(id, user);
+        return userEdited;
+    }
+    remove(id) {
+        this.usersService.removeRecord(id);
     }
 };
 __decorate([
@@ -62,6 +70,27 @@ __decorate([
     __metadata("design:paramtypes", [user_entity_1.User]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "createRecord", null);
+__decorate([
+    (0, common_1.Put)(':id'),
+    (0, swagger_1.ApiBearerAuth)('JWT-auth'),
+    (0, swagger_1.ApiOperation)({ summary: 'Update an user information' }),
+    (0, swagger_1.ApiResponse)({ status: 403, description: 'Forbidden.' }),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [person_entity_1.Person, Number]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "editRecord", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    (0, swagger_1.ApiBearerAuth)('JWT-auth'),
+    (0, swagger_1.ApiOperation)({ summary: 'Delete an user' }),
+    (0, swagger_1.ApiResponse)({ status: 403, description: 'Forbidden.' }),
+    __param(0, (0, common_1.Param)('id', parse_int_pipe_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "remove", null);
 UserController = __decorate([
     (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])

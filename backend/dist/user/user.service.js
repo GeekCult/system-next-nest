@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const user_repository_1 = require("./user.repository");
+const person_repository_1 = require("./person.repository");
 let UserService = class UserService {
     constructor(userRepository, personRepository) {
         this.userRepository = userRepository;
@@ -26,11 +27,17 @@ let UserService = class UserService {
     async createRecord(user) {
         return this.userRepository.save(user);
     }
+    async editRecord(id, user) {
+        return this.personRepository.updateUser(id, user);
+    }
+    async removeRecord(id = 1) {
+        return this.userRepository.update(id);
+    }
 };
 UserService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [user_repository_1.UserRepository,
-        user_repository_1.UserRepository])
+        person_repository_1.PersonRepository])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

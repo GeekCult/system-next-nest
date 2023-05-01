@@ -9,35 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserAuth = void 0;
+exports.PersonAuth = void 0;
 const typeorm_1 = require("typeorm");
 const swagger_1 = require("@nestjs/swagger");
-let UserAuth = class UserAuth {
+let PersonAuth = class PersonAuth {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], UserAuth.prototype, "id", void 0);
+], PersonAuth.prototype, "id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)({ length: 250 }),
     __metadata("design:type", String)
-], UserAuth.prototype, "email", void 0);
+], PersonAuth.prototype, "fisrtName", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, typeorm_1.Column)({ length: 250 }),
     __metadata("design:type", String)
-], UserAuth.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ length: 250 }),
-    __metadata("design:type", String)
-], UserAuth.prototype, "firstName", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ length: 250 }),
-    __metadata("design:type", String)
-], UserAuth.prototype, "lastName", void 0);
-UserAuth = __decorate([
+], PersonAuth.prototype, "lastName", void 0);
+PersonAuth = __decorate([
     (0, typeorm_1.Entity)('user')
-], UserAuth);
-exports.UserAuth = UserAuth;
-//# sourceMappingURL=auth.entity.js.map
+], PersonAuth);
+exports.PersonAuth = PersonAuth;
+//# sourceMappingURL=auth.person.js.map

@@ -27,7 +27,7 @@ let AuthService = class AuthService {
         else {
             if (user.password === auth.password) {
                 let { access_token } = await this.gerarToken(user);
-                return { access_token: access_token, id: user.id };
+                return { access_token: access_token, id: user.id, firstName: user.firstName, lastName: user.lastName };
             }
             else {
                 return { 'statusCode': 401, 'message': 'Usuário ou Senha Inválidos' };
@@ -56,7 +56,7 @@ let AuthService = class AuthService {
         return this.authRepository.find({ select: { id: true, email: true }, where: { email: email } });
     }
     async findOneByEmail(email) {
-        return this.authRepository.findOne({ select: { id: true, email: true, password: true }, where: { email: email } });
+        return this.authRepository.findOne({ select: { id: true, firstName: true, lastName: true, email: true, password: true }, where: { email: email } });
     }
     async gerarToken(payload) {
         return {

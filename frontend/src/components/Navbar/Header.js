@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
+import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -55,10 +56,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function SearchAppBar({isLoggedIn}) {
+export default function SearchAppBar({isLoggedIn, setLoggedIn}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    
     const [video, setVideo] = React.useState("");
     const [cover, setCover] = React.useState("");
     const [title, setTitle] = React.useState("")
@@ -76,6 +78,15 @@ export default function SearchAppBar({isLoggedIn}) {
                 Authorization: 'Bearer ' + token
             })
         })
+    }
+    const logOut = async (e) => {
+        e.preventDefault();
+        localStorage.setItem('firstname', "");
+        localStorage.setItem('lastname', "");
+        localStorage.setItem('token', "");
+        localStorage.setItem('id', "");
+        setLoggedIn(false)
+        //navigate('/')
     }
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -101,7 +112,7 @@ export default function SearchAppBar({isLoggedIn}) {
                             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                             </Avatar>
                             <div>
-                                <Button variant="contained" onClick={handleOpen}>Add New</Button>
+                                <Button variant="contained" onClick={logOut}>Logout</Button>
                                 <Modal
                                     open={open}
                                     onClose={handleClose}

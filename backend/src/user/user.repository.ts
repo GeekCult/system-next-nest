@@ -66,27 +66,7 @@ export class UserRepository extends Repository<User> {
     });
   }
 
-  async updateCompany(id: string, updateCompanyDto: UpdateCompanyInput) {
-    const model = await this.findById(id);
-    if (!model) {
-      throw new NotFoundException('Company not found');
-    }
-
-    const { social_name, fantasy_name, document, phone, is_active, address } =
-      updateCompanyDto;
-
-    const newPayload = {
-      id,
-      social_name,
-      fantasy_name,
-      document,
-      phone,
-      is_active,
-      ...(address || {}),
-    };
-
-    await this.save(newPayload);
-  }
+  
 
   async deleteCompany(id: string): Promise<void> {
     const model = await this.findById(id);

@@ -8,6 +8,7 @@ function App() {
   const id = localStorage.getItem('id');
   const [isLoggedIn, setLoggedIn ] = useState((id !== null && id !== '') ? true : false);
 
+  /*
   useEffect(() => {
     async function fetchData() {
 
@@ -37,11 +38,11 @@ function App() {
         }
     }
     fetchData();
-  }, [id, store]);
+  }, [id, store]); */
 
   return (
     <>
-      <Index isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
+      <Index isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} store={store}/>
     </>
 
   );

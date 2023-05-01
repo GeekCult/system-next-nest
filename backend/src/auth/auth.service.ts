@@ -27,7 +27,7 @@ export class AuthService {
             //return user.password + " " + user.password + ' ' + auth.password
             if(user.password === auth.password) {
                 let { access_token } = await this.gerarToken(user);
-                return {access_token: access_token, id: user.id}
+                return {access_token: access_token, id: user.id, firstName: user.firstName, lastName: user.lastName}
             }else{
                 return {'statusCode': 401, 'message': 'Usuário ou Senha Inválidos'}
                 throw new UnauthorizedException('Usuário ou Senha Inválidos');
@@ -65,7 +65,7 @@ export class AuthService {
 
     async findOneByEmail(email: string): Promise<UserAuth> {
         //return {id: 0, email: email, password: "string"}
-        return this.authRepository.findOne({select: {id: true, email: true, password: true}, where: {email: email}});
+        return this.authRepository.findOne({select: {id: true,  firstName: true,  lastName: true, email: true, password: true}, where: {email: email}});
     }
     
     async gerarToken(payload: UserAuth) {

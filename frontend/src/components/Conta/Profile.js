@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactReduxContext } from 'react-redux';
+import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,15 +10,15 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const theme = createTheme();
 
-export default function Profile() {
-  const { store } = React.useContext(ReactReduxContext)
-
-  const [name, setName] = React.useState('') 
-  let navigate = useNavigate();
+export default function Profile(props) {
+  const { store } = props
+  const id = localStorage.getItem('id');
+  const [name, setFirstName] = React.useState(localStorage.getItem('firstname')) 
+  const [lastname, setLastName] = React.useState(localStorage.getItem('lastname')) 
+  const [output, setOutPut] = React.useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -26,16 +26,29 @@ export default function Profile() {
     const form = {
       firstName : data.get('fname'),
       lastName: data.get('lname'),
-      email: data.get('email'),
-      password: data.get('password')
     };
-    await axios.post("http://localhost:3002/user", form);  
-    navigate('/')
+    await axios.put("http://localhost:3002/user", form
+    ).then( 
+      function(response){ 
+    
+          if (response.data.statusCode !== parseInt('200')) {
+            setOutPut(<Alert severity="error"> {response.data.message} </Alert>)
+          } else {
+            setOutPut(<Alert severity="success"> {response.data.message} </Alert>)
+          }
+      }
+    ).catch(
+      function(response){
+        setOutPut(<Alert severity="error"> {response.message} </Alert>)
+      }
+    );
   };
 
   React.useEffect(() => {
-    setName(store.getState().firstname);
-  },[setName, store]);
+    //setFirstName(store.getState().firstname);
+    //setLastName(store.getState().lastname);
+    //console.log(store.getState().firstname)
+  },[setFirstName, setLastName, store]);
   
 
   return (
@@ -66,6 +79,7 @@ export default function Profile() {
                   id="fname"
                   label="Fullname"
                   value={name}
+                  onChange={(event) => { setFirstName(event.target.value) }}
                   autoFocus
                 />
               </Grid>
@@ -77,22 +91,23 @@ export default function Profile() {
                   label="Last Name"
                   name="lname"
                   autoComplete="family-name"
-             
-                  defaultValue={store.getState().lastname}
+                  onChange={(event) => { setLastName(event.target.value) }}
+                  value={lastname}
                 />
               </Grid>
               
               
             </Grid>
+            <Box sx={{ mt: 2}}>{output}</Box>
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 2 }}
             >
               Save
             </Button>
-       
+         
           </Box>
         </Box>
       </Container>

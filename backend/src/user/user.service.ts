@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { Injectable, Inject } from '@nestjs/common';
 import { UserRepository } from './user.repository';
+import { PersonRepository } from './person.repository';
 import { User } from './user.entity';
 import { Person } from './person.entity';
 
@@ -9,7 +10,7 @@ export class UserService {
 
     constructor(
         private userRepository: UserRepository<User>,
-        private personRepository: UserRepository<Person>,
+        private personRepository: PersonRepository<Person>,
     ){}
 
     async findAll(): Promise<User[]> {
@@ -24,5 +25,12 @@ export class UserService {
         return this.userRepository.save(user);
     }
 
+    async editRecord(id: number, user: Person){
+        return this.personRepository.updateUser(id, user);
+    }
+
+    async removeRecord(id: number = 1){
+        return this.userRepository.update(id);
+    }
 }
 

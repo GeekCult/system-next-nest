@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Person = void 0;
 const typeorm_1 = require("typeorm");
 const swagger_1 = require("@nestjs/swagger");
-class Person {
-}
+let Person = class Person {
+};
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
@@ -33,5 +33,8 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Person.prototype, "email", void 0);
+Person = __decorate([
+    (0, typeorm_1.Entity)("user")
+], Person);
 exports.Person = Person;
 //# sourceMappingURL=person.entity.js.map

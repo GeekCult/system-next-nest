@@ -13,15 +13,15 @@ import {
 
 
 export default function Index(props) {
-    const { isLoggedIn, setLoggedIn } = props
+    const { isLoggedIn, setLoggedIn, store } = props
     return (
         <div>
-            <Header isLoggedIn={isLoggedIn} />
+            <Header isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
             <BrowserRouter>
                 {isLoggedIn ?
                     <Routes>
-                        <Route path="/" element={<Profile setIsLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} />}></Route>
-                        <Route path="/conta" element={<Profile setLoggedIn={setLoggedIn}/>}></Route>
+                        <Route path="/" element={<Profile setIsLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} store={store} />}></Route>
+                        <Route path="/conta" element={<Profile setLoggedIn={setLoggedIn} store={store}/>}></Route>
                     </Routes>
                     :
                     <Routes>
