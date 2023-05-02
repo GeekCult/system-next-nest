@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ReactReduxContext } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -20,7 +19,6 @@ const theme = createTheme();
 export default function SignIn(props) {
   const { setIsLoggedIn } = props
   const [errrorMessage, setErrorMessage] = React.useState('')
-  const { store } = React.useContext(ReactReduxContext)
   let navigate = useNavigate();
   document.title = "Home Page";  
 

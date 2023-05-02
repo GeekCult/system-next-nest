@@ -20,6 +20,24 @@ export default function Profile(props) {
   const [lastname, setLastName] = React.useState(localStorage.getItem('lastname')) 
   const [output, setOutPut] = React.useState('')
 
+  const send = async (event) => {
+    setOutPut('')
+    await axios.post("http://localhost:3002/send-email", {email: "Carlos", mensagem: 'mensagem'}
+    ).then( 
+      function(response){ 
+    
+          if (response.data.statusCode !== parseInt('200')) {
+            setOutPut(<Alert severity="error"> {response.data.message} </Alert>)
+          } else {
+            setOutPut(<Alert severity="success"> {response.data.message} </Alert>)
+          }
+      }
+    ).catch(
+      function(response){
+        setOutPut(<Alert severity="error"> {response.message} </Alert>)
+      }
+    );
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -27,7 +45,7 @@ export default function Profile(props) {
       firstName : data.get('fname'),
       lastName: data.get('lname'),
     };
-    await axios.put("http://localhost:3002/user", form
+    await axios.put("http://localhost:3002/user/" + id, form
     ).then( 
       function(response){ 
     
@@ -109,6 +127,15 @@ export default function Profile(props) {
             </Button>
          
           </Box>
+          <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 2, mb: 2 }}
+              onClick={send}
+            >
+              Send
+            </Button>
         </Box>
       </Container>
     </ThemeProvider>

@@ -1,7 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { ReactReduxContext, connect } from 'react-redux';
 import Index from "./components/Index";
-import axios from 'axios';
 
 function App() {
   const { store } = useContext(ReactReduxContext)

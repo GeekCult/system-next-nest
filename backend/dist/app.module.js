@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
+const mailer_1 = require("@nestjs-modules/mailer");
+const app_controller_1 = require("./app.controller");
+const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
@@ -18,8 +21,28 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forRoot(database_1.databaseConfig),
-            auth_module_1.AuthModule, user_module_1.UserModule
+            auth_module_1.AuthModule, user_module_1.UserModule,
+            mailer_1.MailerModule.forRoot({
+                transport: {
+                    host: process.env.MAIL_HOSTSMTP,
+                    secure: false,
+                    port: 587,
+                    auth: {
+                        user: process.env.MAIL_USER,
+                        pass: process.env.MAIL_PASS,
+                    },
+                    tls: {
+                        rejectUnauthorized: false
+                    },
+                    ignoreTLS: false,
+                },
+                defaults: {
+                    from: 'Carlos Garcia',
+                },
+            }),
         ],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
     })
 ], AppModule);
 exports.AppModule = AppModule;
