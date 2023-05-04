@@ -7,10 +7,10 @@
 
 ## Description
 
-API for checkin and checkout de vehicles.
-Developed in NodeJs, NestJs, TypeScript, TypeOrm, Swagger, JWT and Mysql.
-In this API you must first create a user with email and password.
-After login with Auth to generate the Token, add the generated token to access the API.
+System Front Next - BackEnd Nest.
+Developed in NodeJs, NestJs, NextJs, TypeScript, TypeOrm, Swagger, JWT and Mysql.
+In this ystem you can use it for anykind of system its separated in 2 diferentes directories.
+Backend with swagger and Frontend with Next 
 
 ## Configuration
 Create a .env file at root project with the following data bellow
@@ -21,7 +21,7 @@ DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=root
-DB_DATABASE=drconsulta
+DB_DATABASE=database_name
 
 ## Installation
 
