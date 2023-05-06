@@ -1,0 +1,10 @@
+body {background-color: #f9f9f9;}
+.barMenu {padding: 10px; border: 1px solid #333; width: 100%; background: #fff; min-height: 45px;}
+
+.form-control {width: 100%; padding: 20px; height: auto;}
+.height_auto {height: auto!important;}
+.bold {font-weight: bold;}
+.mgL {margin-left: 20px;}
+.mgR {margin-right: 20px;}
+.MuiInputBase-root                                         {background-color: #fff;}
+.MuiButtonBase-root                                         {padding: 15px 20px;}
