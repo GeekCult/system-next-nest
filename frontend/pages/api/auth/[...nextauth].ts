@@ -47,6 +47,7 @@ export const authOptions: NextAuthOptions = {
           return null
         }
     }),
+    /*
     Auth0Provider({
       clientId: process.env.AUTH0_ID,
       clientSecret: process.env.AUTH0_SECRET,
@@ -68,7 +69,7 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.TWITTER_ID,
       clientSecret: process.env.TWITTER_SECRET,
       version: "2.0",
-    }),
+    }), */
   ],
   callbacks: {
     async jwt({ token }) {

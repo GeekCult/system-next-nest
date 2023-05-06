@@ -14,7 +14,7 @@ function Blog () {
     return (
         <>
         
-        <Header isLoggedIn={ isLog } setLoggedIn={ isLog }></Header>
+        <Header></Header>
 
         <Container component="main" maxWidth="xs">
         <CssBaseline />

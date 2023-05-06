@@ -14,7 +14,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from '../../src/components/Header';
 import axios from 'axios';
 
-function Copyright(props) {
+function Copyright(props:any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -43,7 +43,7 @@ export default function SignUp() {
 
   return (
     <>
-        <Header isLoggedIn={ islog } setLoggedIn={ islog }></Header>
+        <Header></Header>
         <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box

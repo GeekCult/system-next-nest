@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, MouseEvent } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -12,7 +12,7 @@ export default function SearchAppBar() {
     const [lastname, setLastName]:any = useState("") 
     const [isLoggedIn, setLoggedIn] = useState(false) 
 
-    const logOut = async (e: Event) => {
+    const logOut = async (e: MouseEvent) => {
         e.preventDefault();
         window.localStorage.setItem('firstname', "");
         window.localStorage.setItem('lastname', "");
