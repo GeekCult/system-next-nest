@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
-import { File } from "formidable";
 import Formidable from "formidable-serverless"; 
 import fs from "fs";
+
+interface File {
+  path: string
+  name: string
+}
 
 export const config = {
   api: {
@@ -19,8 +23,7 @@ export default function uploadFormFiles(
       keepExtensions: true,
     });
 
-    form
-      .on("file", (name: string, file: File) => {
+    form.on("file", (name: string, file: File) => {
         const data = fs.readFileSync(file.path);
         fs.writeFileSync(`public/images/${file.name}`, data);
         fs.unlinkSync(file.path);
