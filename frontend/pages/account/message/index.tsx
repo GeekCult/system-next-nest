@@ -1,4 +1,3 @@
-'use client';
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
@@ -8,13 +7,12 @@ import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Header from '../../src/components/Header';
+import { Container, TextareaAutosize } from '@mui/material';
+import Header from '../../../src/components/Header';
 
 import axios from 'axios';
-import UploadImages from '../../src/components/UploadImage';
 
-export default function Profile(props: any) {
+export default function Documents(props: any) {
   const { store } = props
   const [id, setId]:any = React.useState("") 
   const [name, setFirstName]:any = React.useState("") 
@@ -29,14 +27,11 @@ export default function Profile(props: any) {
     setLoggin(id ? true : false)
   },[isLog]);
 
-  const handleSubmit = async (event:any) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const form = {
-      firstName : data.get('fname'),
-      lastName: data.get('lname'),
-    };
-    await axios.put("http://localhost:3002/user/" + id, form
+  const send = async (event:any) => {
+
+    setOutPut(<Alert sx={{display: 'none'}}></Alert>)
+
+    await axios.post("http://localhost:3002/send-email", {email: "Carlos", mensagem: 'mensagem'}
     ).then( 
       function(response){ 
     
@@ -51,12 +46,12 @@ export default function Profile(props: any) {
         setOutPut(<Alert severity="error"> {response.message} </Alert>)
       }
     );
-  };  
+  } 
 
   return (
     <>
-        <Header></Header>
-        <Container component="main" maxWidth="xs">
+      <Header></Header>
+        <Container component="main" maxWidth="md">
             <CssBaseline />
             <Box
             sx={{
@@ -66,63 +61,74 @@ export default function Profile(props: any) {
                 alignItems: 'center',
             }}
             >
-            
-            <Typography component="h1" variant="h5" className='txt-left fullwidth'>
-                Perfil
+       
+            <Typography component="h1" variant="h5" className='txt-left fullwidth' >
+                Mensagem
             </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={3}>
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
-              </Grid>
-              <Grid item xs={12} md={9}>
-                <UploadImages />
-              </Grid>
-            </Grid>
-            
-            
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
+            <Box component="form" noValidate sx={{ mt: 3, width: '100%' }}>
+              <Grid container spacing={2}>
                 <Grid item xs={12} sm={12}>
                     <TextField
                     autoComplete="given-name"
-                    name="fname"
+                    name="title"
                     required
                     fullWidth
-                    id="fname"
+                    id="title"
                     label="Nome"
-                    value={name}
+                    value=""
                     onChange={(event) => { setFirstName(event.target.value) }}
                     autoFocus
                     />
                 </Grid>
                 <Grid item xs={12} sm={12}>
                     <TextField
+                    autoComplete="given-name"
+                    name="title"
                     required
                     fullWidth
-                    id="lname"
-                    label="Sobrenome"
-                    name="lname"
-                    autoComplete="family-name"
-                    onChange={(event) => { setLastName(event.target.value) }}
-                    value={lastname}
+                    id="title"
+                    label="E-mail"
+                    value=""
+                    onChange={(event) => { setFirstName(event.target.value) }}
+                    autoFocus
                     />
                 </Grid>
-                
+                <Grid item xs={12} sm={12}>
+                    <TextField
+                    autoComplete="given-name"
+                    name="title"
+                    required
+                    fullWidth
+                    id="title"
+                    label="Título"
+                    value=""
+                    onChange={(event) => { setFirstName(event.target.value) }}
+                    autoFocus
+                    />
+                </Grid>
+                <Grid item xs={12} sm={12}>                
+                    <TextareaAutosize  className='form-control height_auto'
+                    required  
+                    min-rows="28"
+                    placeholder='Digite sua mensagem'
+                    rows="10"                    
+                    />
+                </Grid>       
                 
                 </Grid>
                 <Box sx={{ mt: 2}}>{output}</Box>
                 <Button
                 type="submit"
-                fullWidth
+
                 variant="contained"
-                sx={{ mt: 2, mb: 2, bgcolor: "secondary.main" }}
+                sx={{ mt: 2, mb: 2, bgcolor: "secondary.main", pd: 20 }}
                 >
-                Salvar
+                Enviar
                 </Button>
             
+              </Box>
             </Box>
-            </Box>
-        </Container>
+      </Container>
     </>
   );
 }

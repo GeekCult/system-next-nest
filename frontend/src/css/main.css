@@ -6,5 +6,15 @@ body {background-color: #f9f9f9;}
 .bold {font-weight: bold;}
 .mgL {margin-left: 20px;}
 .mgR {margin-right: 20px;}
+.txt-left {text-align: left!important;}
+.fullwidth {width: 100%;}
+.capitalize {text-transform: capitalize;}
+.btn{padding: 15px 20px; border: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.5);}
+.btn-success {background: #09a803; color: #333;} 
+.btn-main {background: #d65809; color: #ffffff;} 
+.btn-sm {padding: 10px 15px; font-size: 10px;}
+.hide {display: none;}
+.slot-image {max-width: 120px; max-height: 120px; clear: both; display: block;}
+
 .MuiInputBase-root                                         {background-color: #fff;}
 .MuiButtonBase-root                                         {padding: 15px 20px;}

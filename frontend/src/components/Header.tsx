@@ -44,7 +44,7 @@ export default function SearchAppBar() {
                         <>
                          
                             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
-                            <Button variant="contained" component="button" onClick={logOut}>Logout</Button>
+                            <Button variant="contained" component="button" onClick={logOut} className="small capitalize">Sair</Button>
                          
                         </>
                     }
@@ -53,13 +53,23 @@ export default function SearchAppBar() {
             <Toolbar className='barMenu'>
                 <Grid container sx={{pd: 20}}>
                     <Grid item sx={{pd: 20, mg: 20}}>
-                        <Link href="/auth/forgot-password" variant="body2" className='mgL bold'>
+                        <Link href="/account/profile" variant="body2" className='mgL bold'>
                         Perfil
                         </Link>
                     </Grid>
                     <Grid item>
-                        <Link href="/auth/account/documents" variant="body2" className='mgL bold'>
+                        <Link href="/account/documents" variant="body2" className='mgL bold'>
                         Documentos
+                        </Link>
+                    </Grid>
+                    <Grid item>
+                        <Link href="/account/message" variant="body2" className='mgL bold'>
+                        Mensagem
+                        </Link>
+                    </Grid>
+                    <Grid item>
+                        <Link href="/account/images" variant="body2" className='mgL bold'>
+                        Imagens
                         </Link>
                     </Grid>
                 </Grid>

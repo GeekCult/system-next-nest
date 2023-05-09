@@ -86,7 +86,7 @@ export default function Documents(props: any) {
             }}
             >
        
-            <Typography component="h1" variant="h5" className='txt-left'>
+            <Typography component="h1" variant="h5" className='txt-left fullwidth'>
                 Documentos
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3, width: '100%' }}>
@@ -108,8 +108,10 @@ export default function Documents(props: any) {
                 
                     <TextareaAutosize  className='form-control height_auto'
                     required  
+                    label="Descrição"
                     min-rows="18"
-                    
+                    rows="8"
+                    placeholder='Digite o texto do seu documento'
                     />
                 </Grid>
                 
