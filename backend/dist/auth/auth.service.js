@@ -62,7 +62,7 @@ let AuthService = class AuthService {
         return {
             access_token: this.jwtService.sign({ email: payload.email }, {
                 secret: 'GeekCult@2234',
-                expiresIn: '1000s',
+                expiresIn: '50000s',
             }),
         };
     }
