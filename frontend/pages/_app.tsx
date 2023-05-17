@@ -7,8 +7,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import theme from '../src/themes/theme';
 import createEmotionCache from '../src/createEmotionCache';
-import '../src/css/main.css';
 
+import '../src/css/main.css';
 const clientSideEmotionCache = createEmotionCache();
 
 export interface MyAppProps extends AppProps {

@@ -17,7 +17,7 @@ export class PersonRepository extends Repository<Person> {
     }
 
     async findById(id: number){
-      return this.findOne({select: {id: true, firstName: true, lastName: true, email: true}, where: {id: id}});
+      return this.findOne({select: {id: true, firstName: true, lastName: true, email: true, celphone: true}, where: {id: id}});
     }
 
     async updateUser(id: number, user: Person) {
@@ -30,7 +30,7 @@ export class PersonRepository extends Repository<Person> {
       let set = await this.dataSource
         .createQueryBuilder()
         .update(Person)
-        .set({ firstName: user.firstName, lastName: user.lastName })
+        .set({ firstName: user.firstName, lastName: user.lastName, celphone: user.celphone })
         .where("id = :id", { id: id })
         .execute()
         

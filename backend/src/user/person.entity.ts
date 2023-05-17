@@ -19,4 +19,8 @@ export class Person {
     @Column()
     email: string;
 
+    @ApiProperty()
+    @Column()
+    celphone: string;
+
 }

@@ -22,7 +22,7 @@ let PersonRepository = class PersonRepository extends typeorm_1.Repository {
         return this.find({ select: { id: true, firstName: true, lastName: true, email: true } });
     }
     async findById(id) {
-        return this.findOne({ select: { id: true, firstName: true, lastName: true, email: true }, where: { id: id } });
+        return this.findOne({ select: { id: true, firstName: true, lastName: true, email: true, celphone: true }, where: { id: id } });
     }
     async updateUser(id, user) {
         const model = await this.findById(id);
@@ -33,7 +33,7 @@ let PersonRepository = class PersonRepository extends typeorm_1.Repository {
         let set = await this.dataSource
             .createQueryBuilder()
             .update(person_entity_1.Person)
-            .set({ firstName: user.firstName, lastName: user.lastName })
+            .set({ firstName: user.firstName, lastName: user.lastName, celphone: user.celphone })
             .where("id = :id", { id: id })
             .execute();
         if (set) {

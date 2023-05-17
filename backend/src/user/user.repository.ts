@@ -17,7 +17,7 @@ export class UserRepository extends Repository<User> {
     }
 
     async findById(id: number){
-      return this.findOne({select: {id: true, firstName: true, lastName: true, email: true, password: false}, where: {id: id}});
+      return this.findOne({select: {id: true, firstName: true, lastName: true, email: true, password: false, celphone: true}, where: {id: id}});
     }
     /* 
   async createCompany(createCompanyDto: CreateCompanyInput): Promise<void> {

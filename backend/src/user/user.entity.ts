@@ -25,6 +25,10 @@ export class User{
     @ApiProperty()
     @Column()
     email: string;
+
+
+    @Column()
+    celphone: string;
     
     @IsNotEmpty()
     @NotEquals('string')

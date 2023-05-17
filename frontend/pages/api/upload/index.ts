@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Formidable from "formidable-serverless"; 
+import { Formidable } from "formidable-serverless"; 
 import fs from "fs";
 
 interface File {

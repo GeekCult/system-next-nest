@@ -13,25 +13,18 @@ import Header from '../../../src/components/Header';
 import axios from 'axios';
 
 export default function Documents(props: any) {
-  const { store } = props
-  const [id, setId]:any = React.useState("") 
-  const [name, setFirstName]:any = React.useState("") 
-  const [lastname, setLastName]:any = React.useState("") 
-  const [isLog, setLoggin] = React.useState(false)   
-  const [output, setOutPut] = React.useState(<Alert sx={{display: 'none'}}></Alert>)
 
-  React.useEffect(function() {
-    setId(window.localStorage.getItem('id'))
-    setFirstName(window.localStorage.getItem('firstname'))
-    setLastName(window.localStorage.getItem('lastname')) 
-    setLoggin(id ? true : false)
-  },[isLog]);
+  const [name, setName]:any = React.useState("") 
+  const [email, setEmail]:any = React.useState("") 
+  const [message, setMessage]:any = React.useState("")
+  const [titulo, setTitulo]:any = React.useState("")
+  const [output, setOutPut] = React.useState(<Alert sx={{display: 'none'}}></Alert>)
 
   const send = async (event:any) => {
 
-    setOutPut(<Alert sx={{display: 'none'}}></Alert>)
+    setOutPut(<Alert severity="info">Enviando...</Alert>)
 
-    await axios.post("http://localhost:3002/send-email", {email: "Carlos", mensagem: 'mensagem'}
+    await axios.post("http://localhost:3002/send-email", {email: email, mensagem: message}
     ).then( 
       function(response){ 
     
@@ -76,7 +69,7 @@ export default function Documents(props: any) {
                     id="title"
                     label="Nome"
                     value=""
-                    onChange={(event) => { setFirstName(event.target.value) }}
+                    onChange={(event) => { setName(event.target.value) }}
                     autoFocus
                     />
                 </Grid>
@@ -89,7 +82,7 @@ export default function Documents(props: any) {
                     id="title"
                     label="E-mail"
                     value=""
-                    onChange={(event) => { setFirstName(event.target.value) }}
+                    onChange={(event) => { setEmail(event.target.value) }}
                     autoFocus
                     />
                 </Grid>
@@ -102,7 +95,7 @@ export default function Documents(props: any) {
                     id="title"
                     label="Título"
                     value=""
-                    onChange={(event) => { setFirstName(event.target.value) }}
+                    onChange={(event) => { setTitulo(event.target.value) }}
                     autoFocus
                     />
                 </Grid>
@@ -118,11 +111,10 @@ export default function Documents(props: any) {
                 </Grid>
                 <Box sx={{ mt: 2}}>{output}</Box>
                 <Button
-                type="submit"
-
+                type="button"
+                onClick={send}
                 variant="contained"
-                sx={{ mt: 2, mb: 2, bgcolor: "secondary.main", pd: 20 }}
-                >
+                sx={{ mt: 2, mb: 2, bgcolor: "secondary.main", pd: 20 }}>
                 Enviar
                 </Button>
             

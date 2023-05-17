@@ -1,7 +1,5 @@
 'use client';
-import { useEffect, useState, Component, MouseEvent, ChangeEvent, useRef } from 'react';
-import uploadService from '../../services/uploadFilesService';
-import axios from 'axios';
+import { useState, ChangeEvent, useRef } from 'react';
 
 export default function UploadImages(){
 
@@ -9,21 +7,24 @@ export default function UploadImages(){
     const [previewImage, setPreviewImage] = useState<string | null>(null);
     const [state, setState] = useState();
     const [progress, setProgress] = useState();
-    const hiddenFileInput = useRef(null);
+    const hiddenFileInput = useRef<any>(null);
 
     const handleClick = () : void => {
-        hiddenFileInput.current.click();
+        if(!hiddenFileInput.current!) return 
+        hiddenFileInput.current!.click();
     }
 
     const change = async (event: ChangeEvent<HTMLInputElement> | null) => {
-        setCurrentFile(event.target.files[0])
-        setPreviewImage(URL.createObjectURL(event.target.files[0]))
+        setCurrentFile(event!.target.files![0])
+        setPreviewImage(URL.createObjectURL(event!.target.files![0]))
         upload(event)
     }
 
     const upload = async (event: ChangeEvent<HTMLInputElement> | null) => {
         const pictureData = new FormData();
-        pictureData.append('file', event.target.files[0]);
+        if (!event!.target.files) return;
+        console.log(event!.target.files)
+        pictureData.append('file', event!.target.files[0]);
         try {
             const response = await fetch('/api/upload', {
                 method: 'POST',
@@ -34,7 +35,7 @@ export default function UploadImages(){
                 throw data;
             }
             //setpictureFile(null);
-        } catch (error) {
+        } catch (error: any) {
             console.log(error.message);
         }
     }
