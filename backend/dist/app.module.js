@@ -14,6 +14,7 @@ const app_service_1 = require("./app.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const auth_module_1 = require("./auth/auth.module");
 const user_module_1 = require("./user/user.module");
+const seller_module_1 = require("./seller/seller.module");
 const database_1 = require("./config/database");
 let AppModule = class AppModule {
 };
@@ -21,7 +22,7 @@ AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forRoot(database_1.databaseConfig),
-            auth_module_1.AuthModule, user_module_1.UserModule,
+            auth_module_1.AuthModule, user_module_1.UserModule, seller_module_1.SellerModule,
             mailer_1.MailerModule.forRoot({
                 transport: {
                     host: process.env.MAIL_HOSTSMTP,

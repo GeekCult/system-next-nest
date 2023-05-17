@@ -111,7 +111,7 @@ export default function Documents(props: any) {
                     required  
                     min-rows="28"
                     placeholder='Digite sua mensagem'
-                    rows="10"                    
+                                   
                     />
                 </Grid>       
                 

@@ -108,9 +108,9 @@ export default function Documents(props: any) {
                 
                     <TextareaAutosize  className='form-control height_auto'
                     required  
-                    label="Descrição"
+                    
                     min-rows="18"
-                    rows="8"
+                    
                     placeholder='Digite o texto do seu documento'
                     />
                 </Grid>

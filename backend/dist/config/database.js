@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const auth_entity_1 = require("../auth/auth.entity");
 const user_entity_1 = require("../user/user.entity");
 const person_entity_1 = require("../user/person.entity");
+const seller_entity_1 = require("../seller/seller.entity");
 dotenv.config();
 const defaultConfig = {
     type: process.env.DB_TYPE,
@@ -15,7 +16,7 @@ const defaultConfig = {
     username: process.env.DB_USER,
     port: +(process.env.DB_PORT || 3306),
     charset: 'utf8mb4_unicode_ci',
-    entities: [user_entity_1.User, person_entity_1.Person, auth_entity_1.UserAuth],
+    entities: [user_entity_1.User, person_entity_1.Person, seller_entity_1.Seller, auth_entity_1.UserAuth],
     logging: true,
 };
 const testConfig = Object.assign(Object.assign({}, defaultConfig), { database: `${process.env.DB_DATABASE}_test`, logging: false, synchronize: true });

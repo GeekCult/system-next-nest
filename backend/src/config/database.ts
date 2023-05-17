@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 import { UserAuth } from '../auth/auth.entity';
 import { User } from '../user/user.entity';
 import { Person } from '../user/person.entity';
+import { Seller } from '../seller/seller.entity';
 
 
 dotenv.config();
@@ -19,7 +20,7 @@ const defaultConfig: DataSourceOptions = {
     port: +(process.env.DB_PORT || 3306),
 
     charset: 'utf8mb4_unicode_ci',
-    entities: [User, Person, UserAuth],
+    entities: [User, Person, Seller, UserAuth],
     logging: true,
     //synchronize: true,
 };

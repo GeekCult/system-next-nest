@@ -5,13 +5,13 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-
+import { SellerModule } from './seller/seller.module';
 import { databaseConfig } from './config/database';
 
 @Module({
     imports: [
         TypeOrmModule.forRoot(databaseConfig),        
-        AuthModule, UserModule,
+        AuthModule, UserModule, SellerModule,
         MailerModule.forRoot({
             transport: {
               host: process.env.MAIL_HOSTSMTP, //host smtp
